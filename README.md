@@ -1,18 +1,16 @@
-# Keel Webhook Mailer
+# Keel Mailer
 
-Keel Webhook Mailer (KWA) is a simple helper for [Keel](https://keel.sh) that exposes a webhook that sends an email for Keel notifications.
-
-If KWA is deployed as a service in the cluster, you can set the `WEBHOOK_ENDPOINT` variable in Keel to `http://kwa.keel.svc.cluster.local/webhook` and an e-mail will be sent for every notification.
+Keel Mailer is a simple helper for [Keel](https://keel.sh) that sends email when there is a new approval waiting.
 
 ## Installation
 
-1. Configure Keel as usual, and set the `WEBHOOK_ENDPOINT` variable to `http://kwa.keel.svc.cluster.local/webhook`.
-2. Deploy KWA, see [docs/kwa.yaml](docs/kwa.yaml) for an example YAML file. You need to set the correct credentials, preferably as Kubernetes Secrets. See the available environmental variables in the YAML file.
+1. Configure Keel as usual.
+2. Deploy Keel Mailer, see [docs/keel-mailer.yaml](docs/keel-mailer.yaml) for an example YAML file. You need to set the correct credentials, preferably as Kubernetes Secrets. See the available environmental variables in the YAML file.
 3. Enjoy getting e-mail from Keel!
 
 ## License
 
-    keel-webhook-mailer
+    keel-mailer
     Copyright (C) 2021  Linus Karlsson
 
     This program is free software: you can redistribute it and/or modify

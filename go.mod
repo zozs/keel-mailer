@@ -1,3 +1,3 @@
-module github.com/zozs/keel-webhook-mailer
+module github.com/zozs/keel-mailer
 
 go 1.17

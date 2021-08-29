@@ -1,58 +1,60 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kwa
+  name: keel-mailer
   namespace: "keel"
   labels:
-    app: kwa
+    app: keel-mailer
 spec:
   ports:
   - port: 80
     targetPort: 6000
     protocol: TCP
-    name: kwa
+    name: keel-mailer
   selector:
-    app: kwa
+    app: keel-mailer
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kwa
+  name: keel-mailer
   namespace: "keel"
   labels:
-    app: kwa
+    app: keel-mailer
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kwa
+      app: keel-mailer
   template:
     metadata:
       labels:
-        app: kwa
+        app: keel-mailer
     spec:
       containers:
-      - name: kwa
-        image: ghcr.io/zozs/keel-webhook-mailer:latest
+      - name: keel-mailer
+        image: ghcr.io/zozs/keel-mailer:latest
         imagePullPolicy: Always
         # These should preferably be set as secrets instead, but are listed here for completeness.
         env:
-        - name: KWM_SMTP_HOST
+        - name: SMTP_HOST
           value: mail.example.com
-        - name: KWM_SMTP_PORT
+        - name: SMTP_PORT
           value: "587"
-        - name: KWM_SMTP_USER
+        - name: SMTP_USER
           value: user
-        - name: KWM_SMTP_PASS
+        - name: SMTP_PASS
           value: pass
-        - name: KWM_SENDER
+        - name: SMTP_SENDER
           value: keel@example.com
-        - name: KWM_RECIPIENT
+        - name: SMTP_RECIPIENT
           value: devops-team@example.com
-        - name: KWM_PORT
-          value: "6000"
-        ports:
-        - containerPort: 6000
+        - name: KEEL_HOST
+          value: http://keel.keel.svc.cluster.local:9300
+        - name: KEEL_USER
+          value: admin
+        - name: KEEL_PASS
+          value: admin
         resources:
           requests:
             cpu: 10m

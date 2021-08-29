@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ghcr.io/zozs/keel-webhook-mailer
+          images: ghcr.io/zozs/keel-mailer
           tags: |
             type=ref,event=branch
             type=ref,event=pr
